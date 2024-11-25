@@ -59,6 +59,7 @@ Fancybox.bind('[data-fancybox]', {
     // Your custom options
 }); 
 
+/* 
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     // Prevent the default form submission behavior
     event.preventDefault();
@@ -85,3 +86,4 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         document.getElementById('success').innerHTML = "There was a problem sending your message.";
     });
 });
+*/
