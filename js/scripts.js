@@ -59,31 +59,11 @@ Fancybox.bind('[data-fancybox]', {
     // Your custom options
 }); 
 
-/* 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
 
-    // Use Formspree to submit the form
-    const formData = new FormData(this);
-    fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Clear the input fields after successful submission
-            this.reset();
-            document.getElementById('success').innerHTML = "Message sent successfully!";
-        } else {
-            document.getElementById('success').innerHTML = "There was a problem sending your message.";
-        }
-    })
-    .catch(error => {
-        document.getElementById('success').innerHTML = "There was a problem sending your message.";
-    });
-});
-*/
+function resetForm() {
+    // Use a timeout to reset the form after a brief delay
+    setTimeout(() => {
+        document.getElementById('contactForm').reset();
+        document.getElementById('success').innerHTML = "Message sent successfully!";
+    }, 3000); // Adjust the delay as needed
+}
