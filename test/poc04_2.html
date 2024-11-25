@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--Bootstrap CSS CDN-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <!--
+            From 
+            https://www.w3schools.com/howto/howto_js_lightbox.asp
+        -->
+        
+
+        <style>
+            body {
+                font-family: Verdana, sans-serif;
+                margin: 0;
+            }
+            
+            * {
+                box-sizing: border-box;
+            }
+            
+            .row > .column {
+                padding: 0 8px;
+            }
+            
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            
+            .column {
+                float: left;
+                width: 25%;
+            }
+            
+            /* The Modal (background) */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                padding-top: 30px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(145, 145, 145, 0.842);
+            }
+            
+            /* Modal Content */
+            .modal-content {
+                position: relative;
+                background-color: #fefefe78;
+                margin: auto;
+                padding: 0;
+                width: 90%;
+                max-width: 1200px;
+                cursor: zoom-in;
+            }
+            
+            /* The Close Button */
+            .close {
+                color: white;
+                position: absolute;
+                top: 10px;
+                right: 25px;
+                font-size: 35px;
+                font-weight: bold;
+            }
+            
+            .close:hover,.close:focus {
+                color: #999;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
+            .mySlides {
+                display: none;
+            }
+            
+            .cursor {
+                cursor: pointer;
+            }
+            
+            /* Next & previous buttons */
+            .prev,.next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                margin-top: -50px;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+                -webkit-user-select: none;
+            }
+            
+            /* Position the "next button" to the right */
+            .next {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+            }
+            
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover,.next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+            
+            /* Number text (1/3 etc) */
+            .numbertext {
+                color: #f2f2f2;
+                font-size: 12px;
+                padding: 8px 12px;
+                position: absolute;
+                top: 0;
+            }
+            
+            img {
+                margin-bottom: -4px;
+            }
+            
+            .caption-container {
+                text-align: center;
+                background-color: black;
+                padding: 2px 16px;
+                color: white;
+            }
+            
+            .demo {
+                opacity: 0.6;
+            }
+            
+            .active,.demo:hover {
+                opacity: 1;
+            }
+            
+            img.hover-shadow {
+                transition: 0.3s;
+            }
+            
+            .hover-shadow:hover {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            .modal-content img {
+                max-width: 100%;                     /* Allow the image to take full width of the modal */
+                max-height: 90vh;                   /* Limit height to 90% of the viewport height */
+                display: block;
+                margin: auto;
+                cursor: zoom-in;                    /* Indicate zoom functionality */
+                transition: transform 0.3s ease;    /* Smooth transition for zoom */
+            }
+
+        </style>
+
+    </head>
+    
+    
+    
+    <body>
+
+        <div class="container">
+
+            <div class="row">
+
+                <!--Thumnail-->
+                <div class="column">
+                    <img src="https://picsum.photos/600" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+                </div>
+
+                <div class="column">
+                    <img src="https://picsum.photos/599" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+                </div>
+
+                <div class="column">
+                    <img src="https://picsum.photos/598" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+                </div>
+
+                <div class="column">
+                    <img src="https://picsum.photos/597" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+                </div>
+
+            </div>
+              
+
+            <div id="myModal" class="modal">
+            
+                
+                <span class="close cursor" onclick="closeModal()">&times;</span>
+                
+                <div class="modal-content">
+              
+                    <div class="mySlides">
+                        <div class="numbertext">1 / 4</div>
+                        <img src="https://picsum.photos/1500/4900" style="width:100%" id="lightboxImage">
+                    </div>
+
+                    <div class="mySlides">
+                        <div class="numbertext">2 / 4</div>
+                        <img src="https://picsum.photos/2500/1800" style="width:100%" id="lightboxImage">
+                    </div>
+
+                    <div class="mySlides">
+                        <div class="numbertext">3 / 4</div>
+                        <img src="https://picsum.photos/1500/4500" style="width:100%" id="lightboxImage">
+                    </div>
+
+                    <div class="mySlides">
+                        <div class="numbertext">4 / 4</div>
+                        <img src="https://picsum.photos/4900/1400" style="width:100%" id="lightboxImage">
+                    </div>
+               
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                </div>
+            
+            </div>
+
+        </div>
+        
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+        <!-- Bootstrap JS CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        
+        <script>
+
+            function openModal() {
+                document.getElementById("myModal").style.display = "block";
+                const img = document.getElementById("lightboxImage");
+                adjustImageSize(img);                                       // Adjust size when opening the modal
+                document.addEventListener('keydown', handleKeyPress);       // Add keydown event listener
+                img.addEventListener('wheel', handleZoom);                  // Add mouse wheel event for zoom
+            }
+
+            function closeModal() {
+                document.getElementById("myModal").style.display = "none";
+                document.removeEventListener('keydown', handleKeyPress); // Remove keydown event listener
+            }
+
+
+            function adjustImageSize(img) {
+                const modalContent = img.parentElement;
+                const modalWidth = modalContent.clientWidth;
+                const modalHeight = modalContent.clientHeight;
+
+                // Get original dimensions of the image
+                const originalWidth = img.naturalWidth;
+                const originalHeight = img.naturalHeight;
+
+                // Calculate aspect ratio
+                const aspectRatio = originalWidth / originalHeight;
+
+                // Determine new dimensions
+                if (originalWidth > modalWidth || originalHeight > modalHeight) {
+                    if (modalWidth / modalHeight > aspectRatio) {
+                        img.style.width = `${modalHeight * aspectRatio}px`;
+                        img.style.height = `${modalHeight}px`;
+                    } 
+                    else {
+                        img.style.width = `${modalWidth}px`;
+                        img.style.height = `${modalWidth / aspectRatio}px`;
+                    }
+                } 
+                else {
+                    img.style.width = `${originalWidth}px`;
+                    img.style.height = `${originalHeight}px`;
+                }
+            }
+
+            function handleZoom(event) {
+                const img = document.getElementById("lightboxImage");
+                let scale = 1;
+
+                if (event.deltaY < 0) {
+                    scale += 0.1; // Zoom in
+                } 
+                else {
+                    scale -= 0.1; // Zoom out
+                }
+
+                scale = Math.max(1, scale); // Prevent zooming out too much
+                img.style.transform = `scale(${scale})`; // Apply zoom effect
+                event.preventDefault(); // Prevent default scrolling behavior
+            }
+
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("demo");
+                if (n > slides.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = slides.length}
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";
+            }
+
+            function handleKeyPress(event) {
+                switch (event.key) {
+                    case "ArrowLeft":
+                        plusSlides(-1); // Navigate to the previous slide
+                        break;
+                    case "ArrowRight":
+                        plusSlides(1); // Navigate to the next slide
+                        break;
+                    case "Escape":
+                        closeModal(); // Close the modal
+                        break;
+                }
+            }
+
+        </script>
+        
+    </body>
+
+</html>

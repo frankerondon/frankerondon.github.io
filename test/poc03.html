@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <!--
+            From 
+            https://ashleydw.github.io/lightbox/
+        -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+    <body>
+
+        <div class="container">
+        
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="row">
+                        <a href="https://picsum.photos/1200/768" id="open-image" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="https://picsum.photos/600" class="img-fluid">
+                        </a>
+                        <a href="https://picsum.photos/1200/768" id="open-image" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="https://picsum.photos/600" class="img-fluid">
+                        </a>
+                        <a href="https://picsum.photos/1200/768" id="open-image" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="https://picsum.photos/600" class="img-fluid">
+                        </a>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <a href="https://picsum.photos/1200/768" id="open-image" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="https://picsum.photos/600" class="img-fluid">
+                        </a>
+                        <a href="https://picsum.photos/1200/768" id="open-image" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="https://picsum.photos/600" class="img-fluid">
+                        </a>
+                        <a href="https://picsum.photos/1200/768" id="open-image" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="https://picsum.photos/600" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js" integrity="sha512-YibiFIKqwi6sZFfPm5HNHQYemJwFbyyYHjrr3UT+VobMt/YBo1kBxgui5RWc4C3B4RJMYCdCAJkbXHt+irKfSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+            /*
+            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+            */
+
+            
+            $('#open-image').click(function (e) {
+                e.preventDefault();
+                $(this).ekkoLightbox();
+            });
+            
+
+        </script>
+        
+    </body>
+
+</html>
