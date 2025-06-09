@@ -10599,6 +10599,93 @@ img.hover-shadow {
 }
 
 
+/*
+Portfolio captions handle overflow and border radius
+*/
 
 
+/* Permite que el título ocupe varias líneas */
+ .portfolio-caption-heading,
+ .certifications-caption-heading {
+  white-space: normal;
+  /* overflow: visible; Considerar si es necesario o si 'hidden'/'clip' es mejor si hay desbordamiento real */
+  text-overflow: unset;
+  display: flex; /* Usar flex para centrar el contenido */
+  align-items: center; /* Centrar verticalmente el texto dentro del encabezado */
+  justify-content: center; /* Centrar horizontalmente el contenido flex (el texto) */
+  text-align: center; /* Asegurar que el texto en sí esté centrado */
+  min-height: 3em; /* Opcional: asegura alineación si algunos títulos son muy cortos */
+}
 
+/* Asegura que todas las tarjetas tengan la misma altura y el contenido se alinee abajo */
+ #portfolio .portfolio-item,
+ #certifications .certifications-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ #portfolio .portfolio-caption,
+ #certifications .certifications-caption {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+
+/* Add border radius */
+#portfolio .portfolio-item,
+#certifications .certifications-item {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    background: #fff;
+    overflow: hidden; /* Importante para que el contenido respete el border-radius */
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Aplica el border-radius solo arriba a la imagen */
+#portfolio .portfolio-item img.img-fluid,
+#certifications .certifications-item img.img-fluid {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+#portfolio .portfolio-item:hover {
+    box-shadow: 0 4px 16px rgba(1,196,208,0.10);
+    border-color: #01c4d0;
+}
+
+#certifications .certifications-item:hover {
+    /* El color del borde se deriva del color de superposición rgba(209, 154, 0, 0.37) */
+    border-color: #D19A00; /* Equivalente a rgb(209, 154, 0) */
+    box-shadow: 0 4px 16px rgba(209, 154, 0, 0.10); /* Sombra con tonalidad similar y misma intensidad alfa que portfolio */
+}
+
+/* Styling for the HR separator in portfolio and certifications items */
+#portfolio .portfolio-item hr,
+#certifications .certifications-item hr {
+  border: 0; /* Resetea el borde por defecto del hr */
+  border-top: 1.5px solid #e0e0e0; /* Color de la línea, igual al borde de la tarjeta para consistencia */
+  margin-top: 0;    /* Espacio entre la imagen y la línea */
+  margin-bottom: 0;    /* Sin espacio inferior, el padding del caption se encargará */
+  width: 100%;          /* Ancho de la línea (ajusta si prefieres 100% o menos) */
+  margin-left: auto;   /* Centra la línea si width es menor a 100% */
+  margin-right: auto;  /* Centra la línea si width es menor a 100% */
+}
+
+/* Change HR color on portfolio item hover */
+#portfolio .portfolio-item:hover hr {
+  border-top-color: #01c4d0; /* Mismo color que el borde del card en hover */
+}
+
+/* Change HR color on certifications item hover */
+#certifications .certifications-item:hover hr {
+  border-top-color: #D19A00; /* Mismo color que el borde del card en hover */
+}
